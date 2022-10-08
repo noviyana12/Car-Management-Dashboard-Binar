@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/static/styles/bootstrap.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="/static/styles/style.css" />
+    <title>Binar Car Rental</title>
+  </head>
+  <body>
+    <div class="row no-gutters">
+      <!-- custom sidebar-->
+      <div class="col-md-1 custom-sidebar">
+        <div class="d-flex flex-column text-white">
+          <a href="#" class="navbar-brand mx-auto mt-3">
+            <img src="/static/assets/logo-small.png" alt="" />
+          </a>
+          <br />
+          <ul class="nav nav-pills flex-column mb-auto">
+            <li class="nav-item pt-3 pb-3 text-center">
+              <a href="#" class="nav-link text-white">
+                <span><i class="fa fa-home"></i></span> <br />
+                Dashboard
+              </a>
+            </li>
+            <li class="pt-3 pb-3 text-center active-custom-sidebar">
+              <a href="#" class="nav-link text-white" aria-current="page">
+                <span><i class="fa fa-car"></i></span> <br />Cars
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!--end custom sidebar-->
+
+      <div class="col-md-11 col-sm-9 pe-0">
+        <nav class="navbar navbar-expand-lg bg-light shadow-sm">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="#"
+              ><img src="/static/assets/logo.png" alt="logo"
+            /></a>
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-bs-toggle="offcanvas"
+              href="#offcanvasExample"
+              aria-controls="offcanvasExample"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarScroll">
+              <ul
+                class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll"
+                style="--bs-scroll-height: 100px"
+              ></ul>
+              <form class="d-flex" role="search">
+                <input
+                  class="form-control search-box"
+                  type="search"
+                  placeholder="Search"
+                  aria-label="Search"
+                />
+                <button class="btn btn-search me-4" type="submit">
+                  Search
+                </button>
+              </form>
+              <div
+                class="dropdown p-2"
+                style="background-color: white; border-radius: 10px"
+              >
+                <a
+                  href="#"
+                  class="d-flex align-items-center text-black text-decoration-none dropdown-toggle"
+                  id="dropdownUser1"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <img
+                    src="https://github.com/mdo.png"
+                    alt=""
+                    width="32"
+                    height="32"
+                    class="rounded-circle me-2"
+                  />
+                  <strong>Unis Badri</strong>
+                </a>
+                <ul
+                  class="dropdown-menu dropdown-menu-light text-small shadow"
+                  aria-labelledby="dropdownUser1"
+                >
+                  <li>
+                    <a class="dropdown-item" href="#">New project...</a>
+                  </li>
+                  <li><a class="dropdown-item" href="#">Settings</a></li>
+                  <li><a class="dropdown-item" href="#">Profile</a></li>
+                  <li><hr class="dropdown-divider" /></li>
+                  <li><a class="dropdown-item" href="#">Sign out</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </nav>
+        <!--end sidebar 2-->
+
+        <div class="row">
+          <div
+            class="col-md-2 custom-sidebar-2"
+            style="background-color: white; padding: 0px; margin: 0px"
+          >
+            <h5 class="sidebar-title-car">CARS</h5>
+            <ul class="nav nav-pills flex-column mb-auto">
+              <li class="nav-item active-custom pt-3 pb-3">
+                <a href="#" class="nav-link link-car" aria-current="page">
+                  List Car
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-10">
+            <div class="content"><%- body %></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--off canvass-->
+    <!--
+      <div
+        class="offcanvas offcanvas-start"
+        data-bs-backdrop="false"
+        tabindex="-1"
+        id="offcanvasExample"
+        aria-labelledby="offcanvasExampleLabel"
+      >
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title fw-bold" id="offcanvasExampleLabel">
+            BCR
+          </h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="offcanvas"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a href="#our-service__section" class="nav-link">Our Services</a>
+            </li>
+            <li class="nav-item">
+              <a href="#why-us__section" class="nav-link">Why Us</a>
+            </li>
+            <li class="nav-item">
+              <a href="#testimoni__section" class="nav-link">Testimony</a>
+            </li>
+            <li class="nav-item">
+              <a href="#faq__section" class="nav-link">FAQ</a>
+            </li>
+            <li class="nav-item">
+              <button class="btn btn-success fw-bold btn-offcanvas">
+                Register
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+      integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="/static/scripts/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

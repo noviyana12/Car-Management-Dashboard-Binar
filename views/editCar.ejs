@@ -1,0 +1,97 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a href="/" class="breadcrumb-item-link">Cars</a>
+    </li>
+    <li class="breadcrumb-item">
+      <a href="/" class="breadcrumb-item-link">List Car</a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">
+      Update Car Information
+    </li>
+  </ol>
+</nav>
+
+<div class="row">
+  <div class="col-md-10">
+    <h1 class="content-title">Update Car Information</h1>
+  </div>
+</div>
+<div class="form form-add mt-2 mb-5 me-3 p-3">
+  <form
+    action="/edit/<%= data.id %>?_method=PUT"
+    method="POST"
+    enctype="multipart/form-data"
+    class="mt-2"
+  >
+    <div class="row mb-3 kolom-add">
+      <div class="col-md-2 p-0">
+        <label for="nama" class="form-label">Nama</label>
+      </div>
+      <div class="col-md-10">
+        <input
+          type="text"
+          class="form-control"
+          id="nama"
+          name="nama"
+          placeholder="Avanza"
+          value="<%= data.nama %> "
+        />
+      </div>
+    </div>
+    <div class="row mb-3 kolom-add">
+      <div class="col-md-2 p-0">
+        <label for="sewaharian" class="form-label">Sewa per hari</label>
+      </div>
+      <div class="col-md-10">
+        <input
+          type="text"
+          inputmode="numeric"
+          class="form-control"
+          id="sewaharian"
+          placeholder="Rp0,-"
+          name="sewaharian"
+          value="<%= data.sewaharian %> "
+        />
+      </div>
+    </div>
+    <div class="row mb-3 kolom-add">
+      <div class="col-md-2 p-0">
+        <label for="ukuran" class="form-label">Ukuran</label>
+      </div>
+      <div class="col-md-10">
+        <select
+          class="form-select"
+          name="ukuran"
+          aria-label="Default select example"
+        >
+          <option selected><%= data.ukuran %></option>
+          <option value="1">Small</option>
+          <option value="2">Medium</option>
+          <option value="3">Large</option>
+        </select>
+      </div>
+    </div>
+    <div class="row mb-3 kolom-add">
+      <div class="col-md-2 p-0">
+        <label for="exampleFormControlTextarea1" class="form-label">Foto</label>
+      </div>
+      <div class="col-md-10">
+        <input
+          class="form-control"
+          type="file"
+          name="foto"
+          id="formFileMultiple"
+          value="<%= data.foto %>"
+          multiple
+        />
+        <p>File size max 2MB</p>
+      </div>
+    </div>
+    <div class="button-confirm mb-5">
+      <button class="btn btn-cancel">Cancel</button>
+      <input type="hidden" name="_method" value="PUT" />
+      <button type="submit" class="btn btn-save">Save</button>
+    </div>
+  </form>
+</div>

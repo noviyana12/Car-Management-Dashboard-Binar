@@ -1,0 +1,56 @@
+            <%- contentFor('body') %>
+            
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                  <a href="#" class="breadcrumb-item-link">Cars</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">
+                  List Car
+                </li>
+              </ol>
+            </nav>
+
+            <div class="row">
+                 <div class="col-md-10">
+                <h1 class="content-title">Add New Car</h1>
+              </div>
+                <div class="col-md-2 ps-3">
+                  <a class="btn btn-tambahdata" href="/add">+ Add New Car</a>
+                </div>
+              </div>
+              <div class="pilihan">
+               <button class="btn btn-active">All</button>
+              <button class="btn btn-non-active">Small</button>
+              <button class="btn btn-non-active">Medium</button>
+              <button class="btn btn-non-active">Large</button>
+              </div>
+              <br>
+              <div class="row pe-3">
+                <% data.forEach(function(data) { %>
+                <div class="col-md-4">
+                   <div class="card">
+                      <img src="/static/assets/uploads/<%= data.foto %>" class="card-img-top" alt="...">
+                      <div class="card-body">
+                      <p class="card-title"><%= data.nama %>/<%= data.ukuran %></p>
+                      <p class="fw-bold harga-mobil">Rp.<%= data.sewaharian %>/hari</p>
+                      <p><span><i class="fa fa-clock"></i></span> Updated at <%= data.updatedAt %></p>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <form action="/delete/<%= data.id %>?_method=DELETE" method="post">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <button type="submit" class="btn btn-outline-danger w-100"><span><i class="fa fa-trash"></i></span> Delete</button>
+                          </form>
+                            
+                        </div>
+                        <div class="col-md-6">
+                          <a class="btn btn-success w-100" href="/edit/<%= data.id %>"> <span><i class="fa fa-edit"></i> Edit</a>
+                        </div>
+                      </div>
+                      
+                    </div>
+                </div>
+                </div>
+                <% }); %>
+
+              </div>
