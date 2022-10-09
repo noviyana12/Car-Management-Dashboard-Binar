@@ -225,3 +225,42 @@ header {
 .card {
   margin-bottom: 24px;
 }
+.alert {
+  text-align: center;
+  width: 500px;
+  margin: 0px auto;
+  font-size: 16px;
+}
+.alert-success {
+  background-color: #73ca5c;
+  color: #fff;
+}
+
+.alert-dark {
+  background-color: #151515;
+  color: #fff;
+}
+
+.btn-edit {
+  background-color: #5cb85f;
+  color: white;
+}
+.btn-edit:hover {
+  background-color: #5cb85f;
+  color: white;
+}
+.modal-dialog {
+  width: 350px;
+}
+.btn-validator-yes {
+  width: 90px;
+  background-color: #0d28a6;
+  color: #fff;
+  border-radius: 2px;
+}
+.btn-validator-no {
+  width: 90px;
+  border: 1px solid #0d28a6;
+  color: #0d28a6;
+  border-radius: 2px;
+}

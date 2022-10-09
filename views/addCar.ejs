@@ -9,7 +9,11 @@
     <li class="breadcrumb-item active" aria-current="page">Add New Car</li>
   </ol>
 </nav>
-
+<% if(messageErr.length > 0) { %>
+<div class="alert alert-danger shadow-sm mt-3" role="alert">
+  <%= messageErr %>
+</div>
+<% } %>
 <div class="row">
   <div class="col-md-10">
     <h1 class="content-title">Add New Car</h1>
@@ -85,7 +89,7 @@
     </div>
 
     <div class="button-confirm mb-5">
-      <button class="btn btn-cancel">Cancel</button>
+      <a class="btn btn-cancel" href="/">Cancel</a>
       <button type="submit" class="btn btn-save">Save</button>
     </div>
   </form>

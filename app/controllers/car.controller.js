@@ -6,9 +6,6 @@ const Op = db.Sequelize.Op;
 
 const multer = require("multer");
 
-const cloudinary = require("cloudinary");
-//const dotenv = require("dotenv");
-
 /* HANDLING IMAGE */
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -24,6 +21,8 @@ const storage = multer.diskStorage({
     cb(null, file.fieldname + "-" + Date.now() + mimeExtension[file.mimetype]);
   },
 });
+
+const maxSize = 1 * 2028 * 2048;
 
 exports.uploadFoto = multer({
   storage: storage,
@@ -41,10 +40,24 @@ exports.uploadFoto = multer({
       req.fileError = "File format is not valid";
     }
   },
+  limits: { fileSize: maxSize },
 });
 
+exports.fileSizeLimitErrorHandler = (err, req, res, next) => {
+  if (err) {
+    req.flash("messageErr", "File gambar terlalu besar");
+    return res.redirect("/add");
+  } else {
+    next();
+  }
+};
+/* HANDLING IMAGE */
+
+/*HANDLING TAMBAH DATA */
 exports.add = (req, res) => {
-  res.render("addCar");
+  res.render("addCar", {
+    messageErr: req.flash("messageErr"),
+  });
 };
 
 exports.create = (req, res) => {
@@ -62,10 +75,13 @@ exports.create = (req, res) => {
     foto: req.file.filename,
   };
 
-  // Save Tutorial in the database
   Car.create(car)
     .then((data) => {
-      //res.send(data);
+      req.flash("message", "Data Berhasil Disimpan");
+
+      /* untuk testing di postman 
+          return res.send(data);
+      */
       return res.redirect("/");
     })
     .catch((err) => {
@@ -74,20 +90,25 @@ exports.create = (req, res) => {
       });
     });
 };
+/*END HANDLING TAMBAH DATA */
 
+/*HANDLING FIND ALL CAR */
 exports.findAll = (req, res) => {
-  //res.render("listCar");
-
   const nama = req.query.nama;
   var condition = nama ? { nama: { [Op.like]: `%${nama}%` } } : null;
 
   Car.findAll({ where: condition })
     .then((data) => {
-      //res.render("listCar");
-      //res.send(data);
-      // var data = data;
-      //var subheading = "I though we should involve some magic";
-      res.render("listCar", { data: data });
+      //
+      /* untuk testing di postman 
+          return res.send(data);
+      */
+
+      res.render("listCar", {
+        data: data,
+        message: req.flash("message"),
+        messageDel: req.flash("messageDel"),
+      });
     })
     .catch((err) => {
       res.status(500).send({
@@ -95,17 +116,15 @@ exports.findAll = (req, res) => {
       });
     });
 };
+/*END HANDLING FIND ALL CAR */
 
+/*HANDLING EDIT CAR - GO TO EDIT PAGE */
 exports.edit = (req, res) => {
-  //res.render("editCar");
-
   const id = req.params.id;
 
   Car.findByPk(id)
     .then((data) => {
       if (data) {
-        //res.send(data);
-        //return res.redirect("/");
         res.render("editCar", { data: data });
       } else {
         res.status(404).send({
@@ -119,30 +138,30 @@ exports.edit = (req, res) => {
       });
     });
 };
+/*END HANDLING EDIT CAR - GO TO EDIT PAGE */
 
+/*HANDLING UPDATE CAR */
 exports.update = (req, res) => {
-  //return res.json(req.body);
   const id = req.params.id;
 
-  const reqBody = {
+  const car = {
     nama: req.body.nama,
     sewaharian: req.body.sewaharian,
     ukuran: req.body.ukuran,
-    foto: req.file.filename,
   };
+  if (req.file) {
+    car.foto = req.file.filename;
+  }
 
-  Car.update(reqBody, {
+  Car.update(car, {
     where: { id: id },
   })
     .then((num) => {
       if (num == 1) {
-        /*
-          res.send({
-            message: "Car was updated successfully.",
-          });
-*/
+        /* untuk testing di postman 
+          return res.send(car);
+        */
         return res.redirect("/");
-        //return res.json(req.file);
       } else {
         res.send({
           message: `Cannot update Car with id=${id}. Maybe Car was not found or req.body is empty!`,
@@ -155,7 +174,9 @@ exports.update = (req, res) => {
       });
     });
 };
+/*END HANDLING UPDATE CAR */
 
+/*HANDLING DELETE CAR */
 exports.delete = (req, res) => {
   const id = req.params.id;
 
@@ -164,10 +185,10 @@ exports.delete = (req, res) => {
   })
     .then((num) => {
       if (num == 1) {
-        /*
-        res.send({
-          message: "Car was deleted successfully!",
-        });
+        req.flash("messageDel", "Data Berhasil Dihapus");
+
+        /* untuk testing di postman 
+          return res.send("Data berhasil dihapus");
         */
         return res.redirect("/");
       } else {
@@ -182,3 +203,4 @@ exports.delete = (req, res) => {
       });
     });
 };
+/*END HANDLING DELETE CAR */
